@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    dynamic:
+      primary: postgres
+      strict: true
+      datasource:
+        mysql:
+          type: ${spring.datasource.type}
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/testdb
+          username: root
+          password: password
+        postgres:
+          type: ${spring.datasource.type}
+          driver-class-name: org.postgresql.Driver
+          url: jdbc:postgresql://localhost:5432/postgres
+          username: postgres
+          password: password
