@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.HashMap;
 
-@Configuration
+//@Configuration
 public class JobPageConfig {
     @Autowired
     private JobRepository jobRepository;
@@ -36,7 +36,7 @@ public class JobPageConfig {
     @Bean
     public Step pageStep() throws Exception {
         MySqlPagingQueryProvider provider = new MySqlPagingQueryProvider();
-        provider.setSelectClause("id, test_key, value");
+        provider.setSelectClause("id, test_key, test_value");
         provider.setFromClause("test_demo");
         provider.setSortKeys(new HashMap<>(){{put("id", Order.ASCENDING);}});
         JdbcPagingItemReader reader = new JdbcPagingItemReader<>();
