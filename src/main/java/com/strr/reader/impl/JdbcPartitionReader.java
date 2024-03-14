@@ -52,11 +52,13 @@ public class JdbcPartitionReader extends AbstractItemCountingItemStreamItemReade
     }
 
     private void fetchData() {
-        if (dataSource == null || script == null) {
+        if (dataSource == null || script == null || executionContext == null) {
             return;
         }
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        results = jdbcTemplate.queryForList(script);
+        int startRow = executionContext.getInt("startRow");
+        long pageSize = executionContext.getLong("pageSize");
+        results = jdbcTemplate.queryForList(String.format("%s limit %d offset %d", script, pageSize, startRow));
     }
 
     public long getCount() {
