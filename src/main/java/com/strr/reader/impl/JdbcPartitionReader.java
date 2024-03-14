@@ -76,7 +76,7 @@ public class JdbcPartitionReader extends AbstractItemCountingItemStreamItemReade
 
     @Override
     public void open(ExecutionContext executionContext) throws ItemStreamException {
-        super.open(executionContext);
         this.executionContext = executionContext;
+        super.open(executionContext);
     }
 }
